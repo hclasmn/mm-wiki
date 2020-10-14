@@ -35,64 +35,31 @@ MM-Wiki 是一个轻量级的企业知识分享与团队协同软件，可用于
 # 安装
 ## 1. 自助安装
 
-打开 https://github.com/phachon/mm-wiki/releases 找到对应平台的版本下载编译好的压缩包
-
-- Linux 平台
-
-    ```
-    # 创建目录
-    $ mkdir mm_wiki
-    $ cd mm_wiki
-    # 以 linux amd64 为例，下载最新版本压缩包
-    # https://github.com/phachon/mm-wiki/releases 自行下载 wget http://
-    # 解压到当前目录
-    $ tar -zxvf mm-wiki-linux-amd64.tar.gz
-    # 进入程序安装目录
-    $ cd install
-    # 执行安装程序，默认端口为 8090，指定其他端口加参数 --port=8087
-    $ ./install
-    # 浏览器访问 http://ip:8090 进入安装界面，完成安装配置
-    # Ctrl + C 停止 install 程序, 启动 MM-Wiki 系统
-    $ cd ..
-    $ ./mm-wiki --conf conf/mm-wiki.conf
-    # 浏览器访问你监听的 ip 和端口
-    # 开始 MM-Wiki 的使用之旅吧！
-    ```
-
-- Windows 平台
-
-    ```
-    # 以 windows amd64 为例，下载最新版本压缩包
-    # https://github.com/phachon/mm-wiki/releases 自行下载
-    # 手动解压到当前目录
-    # 进入 install 目录
-    # 双击点开 install.exe 文件
-    # 浏览器访问 http://ip:8090 进入安装界面，完成安装配置
-    # 关闭刚刚点开的 install 窗口
-    # 使用 windows 命令行工具（cmd.exe）进入程序根目录
-    $ 执行 mm-wiki.exe --conf conf/mm-wiki.conf
-    # 浏览器访问你监听的 ip 和端口
-    # 开始 MM-Wiki 的使用之旅吧！
-    ```
-
 - Docker 部署
     ```
+    方法一（原作者的方法）
     # 数据库准备
     # 导入docs/databases/data.sql和docs/databases/table.sql（注：需取消注释data.sql中第一条管理用户插入语句）
 
     # 两种部署方式可用
-    # DockerHub（推荐）
-    # 从DockerHub下载v0.1.7版本
     # 新增配置文件，数据存放目录以及Mysql数据库配置在mm-wiki.conf配置文件中设置
     # 挂载配置文件及数据存放目录，启动端口为8080
-    # docker run -d -p 8080:8081 -v /data/mm-wiki/conf/:/opt/mm-wiki/conf/ -v /data/mm-wiki/data:/data/mm-wiki/data/ --name mm-wiki eahom/mm-wiki:v0.1.7
-
-    # 本地构建最新代码
-    # 构建项目镜像
-    # docker build -t mm-wiki-image .
-    # 新增配置文件，数据存放目录以及Mysql数据库配置在mm-wiki.conf配置文件中设置
-    # 挂载配置文件及数据存放目录，启动端口为8080
-    # docker run -d -p 8080:8081 -v /data/mm-wiki/conf/:/opt/mm-wiki/conf/ -v /data/mm-wiki/data/:/data/mm-wiki/data/ --name mm-wiki mm-wiki-image
+    # docker run -d -p 8080:8081 -v /data/mm-wiki/conf/:/opt/mm-wiki/conf/ -v /data/mm-wiki/data:/data/mm-wiki/data/ --name mm-wiki hclasmn/mm-wiki-docker:latest
+    方法二（docker-compose 先安装后运行）
+    version: "3"
+    services:
+    mm-wiki:
+    image: hclasmn/mm-wiki-docker:latest
+    container_name: mm-wiki
+    ports:
+      - "9081:8080"
+      - "9080:8090"
+    volumes:
+      - /docker/data/wiki/markdowns:/data/markdowns
+    working_dir: /mm-wiki
+    command: ./install/install   # 先运行此命令，注释下一条进行访问9080端口安装
+    command: ./mm-wiki --conf conf/mm-wiki.conf #再运行此命令，注释上一条访问9081进行使用
+    restart: always 
     ```
 ## 2. 如果需要，可用 nginx 配置反向代理
 ```
