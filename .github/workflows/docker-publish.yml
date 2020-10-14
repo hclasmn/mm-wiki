@@ -60,6 +60,7 @@ jobs:
         run: docker push $IMAGE_NAME
         
       - name: chmod
-        run: chmod 777 ./build.sh
+        run: chmod 777 ./buildx.sh
       - name: buildx
-        run: ./build.sh
+        run: ./buildx.sh
+
