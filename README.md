@@ -5,33 +5,14 @@
 </h2>
 
 <div align="center">
+# 项目来源https://github.com/phachon/mm-wiki
 
-MM-Wiki 是一个轻量级的企业知识分享与团队协同软件，可用于快速构建企业 Wiki 和团队知识分享平台。部署方便，使用简单，帮助团队构建一个信息共享、文档管理的协作环境。
-</br>
-
-[![stable](https://img.shields.io/badge/stable-stable-green.svg)](https://github.com/phachon/mm-wiki/) 
-[![build](https://img.shields.io/shippable/5444c5ecb904a4b21567b0ff.svg)](https://travis-ci.org/phachon/mm-wiki)
-[![license](http://img.shields.io/badge/license-MIT-red.svg?style=flat)](https://raw.githubusercontent.com/phachon/mm-wiki/master/LICENSE)
-[![platforms](https://img.shields.io/badge/platform-All-yellow.svg?style=flat)]()
-[![download_count](https://img.shields.io/github/downloads/phachon/mm-wiki/total.svg?style=plastic)](https://github.com/phachon/mm-wiki/releases) 
-[![release](https://img.shields.io/github/release/phachon/mm-wiki.svg?style=flat)](https://github.com/phachon/mm-wiki/releases) 
 
 </div>
 
 # 特点
-- 部署方便，基于 golang 编写，只需要下载对于平台下二进制文件执行即可。
-- 快速安装程序, 提供方便的安装界面程序，无需任何手动操作。
-- 独立的空间，空间是一组文档的集合，一般为公司部门或者团队，空间下的文档相互独立。空间可根据需求设置空间访问级别。
-- 支持 markdown 语法写作，支持附件上传。
-- 完善的系统权限管理，系统可以自定义角色，并为不同角色授予不同的权限。
-- 集成统一登录，本系统支持通过外部系统认证用户, 比如与公司的 LDAP 登录融合。具体请看登录认证功能。
-- 邮件通知功能，当开启邮件通知，文档更改会通知所有关注该文档的用户。
-- 文档具有分享和下载功能，目前只支持下载 MarkDown 源文件。
-- 支持文档全文搜索
-
-# 在线快速了解
-- [mm-wiki企业知识分享与团队协同软件](http://wiki.cifaz.com/), 用户名:admin, 密码:mmwiki, 点击不了请复制http://wiki.cifaz.com/
-
+- 本项目基于phachon/mm-wiki  docker化，自动同步作者代码（上游修改后3小时左右，可以手动）自动buildx多个架构的镜像并push
+- 本项目仅仅是docker化，修改了作者的dockerfile，其他未修改，详细说明可移步原作者项目
 # 安装
 ## 1. 自助安装
 
