@@ -7,7 +7,7 @@ RUN apk add --no-cache git && \
     git clone https://github.com/hclasmn/mm-wiki.git && \
     cd mm-wiki && \
     chmod 777 goinstall.sh && \
-    ./goinstall.sh && \
+    ./build.sh && \
     go build ./ && \
     cd install && \
     go build ./
