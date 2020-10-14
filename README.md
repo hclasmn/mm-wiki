@@ -37,7 +37,7 @@ MM-Wiki 是一个轻量级的企业知识分享与团队协同软件，可用于
 
 - Docker 部署
     ```
-    方法一（原作者的方法）
+    方法一（原作者的方法-导入数据库）
     # 数据库准备
     # 导入docs/databases/data.sql和docs/databases/table.sql（注：需取消注释data.sql中第一条管理用户插入语句）
 
@@ -45,7 +45,7 @@ MM-Wiki 是一个轻量级的企业知识分享与团队协同软件，可用于
     # 新增配置文件，数据存放目录以及Mysql数据库配置在mm-wiki.conf配置文件中设置
     # 挂载配置文件及数据存放目录，启动端口为8080
     # docker run -d -p 8080:8081 -v /data/mm-wiki/conf/:/opt/mm-wiki/conf/ -v /data/mm-wiki/data:/data/mm-wiki/data/ --name mm-wiki hclasmn/mm-wiki-docker:latest
-    方法二（docker-compose 先安装后运行）
+    方法二（docker-compose 先安装后运行-如果你不想用作者的数据库的话）
     version: "3"
     services:
     mm-wiki:
@@ -55,7 +55,8 @@ MM-Wiki 是一个轻量级的企业知识分享与团队协同软件，可用于
       - "9081:8080"
       - "9080:8090"
     volumes:
-      - /docker/data/wiki/markdowns:/data/markdowns
+      - /docker:/data/
+      - /docker/mm-wiki/conf:/mm-wiki/conf
     working_dir: /mm-wiki
     command: ./install/install   # 先运行此命令，注释下一条进行访问9080端口安装
     command: ./mm-wiki --conf conf/mm-wiki.conf #再运行此命令，注释上一条访问9081进行使用
