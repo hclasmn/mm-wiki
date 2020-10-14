@@ -9,7 +9,8 @@
 
 
 </div>
-
+# 目的
+- 本人用的树莓派armv7
 # 特点
 - 本项目基于phachon/mm-wiki  docker化，自动同步作者代码（上游修改后3小时左右，可以手动）自动buildx多个架构的镜像并push
 - 本项目仅仅是docker化，修改了作者的dockerfile，其他未修改，详细说明可移步原作者项目
