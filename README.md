@@ -109,7 +109,9 @@ MM-Wiki 是站在巨人的肩膀上开发的一款软件，是因为系统中使
 ```
 $ git clone https://github.com/phachon/mm-wiki.git
 $ cd mm-wiki
+$ 。/build.sh
 $ go build ./
+$ cd install && go build ./
 ```
 
 >如果你想为 mm-wiki 贡献代码，请加开发者交流群：922827699
