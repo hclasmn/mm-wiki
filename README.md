@@ -39,7 +39,19 @@
     command: ./mm-wiki --conf conf/mm-wiki.conf #再运行此命令，注释上一条访问9081进行使用
     restart: always 
     ```
-## 2. 如果需要，可用 nginx 配置反向代理
+    ```
+    如何升级
+    用docker cp命令进行替换程序按作者命令进行升级
+    下载新版本到部署该项目的根目录（对于作者未提供releases的，未测试直接更新镜像是否会造成数据损坏，有测试的可以反馈给我）
+    覆盖解压 (tar -zxvf mm-wiki-v0.2.1-linux-amd64.tar.gz)
+    执行升级命令
+    docker cp newreleases dockerimage:/older
+    ./mm-wiki --conf conf/mm-wiki.conf --upgrade
+    重新启动
+    ./mm-wiki --conf conf/mm-wiki.conf
+
+    ```
+## 3. 如果需要，可用 nginx 配置反向代理
 ```
 upstream frontends {
     server 127.0.0.1:8088; # MM-Wiki 监听的ip:port
